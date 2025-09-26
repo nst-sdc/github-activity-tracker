@@ -20,11 +20,9 @@ func InitDB() {
 
     log.Println("Connected to PostgreSQL!")
 
-    // Example model auto-migration
     DB.AutoMigrate(&User{})
 }
 
-// Example model
 type User struct {
     ID    uint   `gorm:"primaryKey"`
     Name  string
