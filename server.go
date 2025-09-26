@@ -2,6 +2,7 @@ package main
 
 import "gofr.dev/pkg/gofr"
 
+
 func main() {
 	// initialize gofr object
 	app := gofr.New()
