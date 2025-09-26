@@ -1,18 +1,31 @@
 package main
 
 import (
+    "log"
     "gorm.io/driver/postgres"
     "gorm.io/gorm"
 )
-func main() {
-    //Create a new Postgresql database connection
-    dsn := "host=<your_host> user=<your_user> \
-    password=<your_password> dbname=<your_dbname> port=<your_port>"
 
-    // Open a connection to the database
-    db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+var DB *gorm.DB
+
+func InitDB() {
+    dsn := "host=localhost user=postgres password=yourpassword dbname=github_activity port=5432 sslmode=disable TimeZone=Asia/Kolkata"
+
+    var err error
+    DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
     if err != nil {
-        panic("failed to connect to database: " + err.Error())
+        log.Fatal("Failed to connect to database:", err)
     }
+
+    log.Println("Connected to PostgreSQL!")
+
+    // Example model auto-migration
+    DB.AutoMigrate(&User{})
 }
 
+// Example model
+type User struct {
+    ID    uint   `gorm:"primaryKey"`
+    Name  string
+    Email string `gorm:"unique"`
+}

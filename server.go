@@ -1,18 +1,30 @@
 package main
 
-import "gofr.dev/pkg/gofr"
-
+import (
+    "gofr.dev/pkg/gofr"
+)
 
 func main() {
-	// initialize gofr object
-	app := gofr.New()
+    // Initialize database
+    InitDB()
 
-	// register route greet
-	app.GET("/greet", func(ctx *gofr.Context) (any, error) {
-		return "Hello World!", nil
-	})
+    // Initialize Gofr app
+    app := gofr.New()
 
-	// Runs the server, it will listen on the default port 8000.
-	// it can be over-ridden through configs
-	app.Run()
+    // Routes
+    app.GET("/greet", func(ctx *gofr.Context) (any, error) {
+        return "Hello World!", nil
+    })
+
+    // Example route to add user
+    app.POST("/users", func(ctx *gofr.Context) (any, error) {
+        var user User
+        if err := ctx.Bind(&user); err != nil {
+            return nil, err
+        }
+        DB.Create(&user)
+        return user, nil
+    })
+
+    app.Run()
 }
