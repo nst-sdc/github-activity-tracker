@@ -1,0 +1,54 @@
+---
+const { contributions = [] } = Astro.props;
+
+// Generate empty contribution grid for October 2025
+const generateEmptyDays = () => {
+  const days = [];
+  for (let i = 1; i <= 31; i++) {
+    days.push({ date: `2025-10-${i.toString().padStart(2, '0')}`, count: 0 });
+  }
+  return days;
+};
+
+const emptyContributions = generateEmptyDays();
+---
+
+<div class="bg-white rounded-lg shadow-md p-6">
+  <h3 class="text-lg font-semibold text-gray-900 mb-4">October 2025 Contributions</h3>
+  
+  <div class="text-center text-gray-500 py-8">
+    <h4 class="text-lg font-semibold mb-2">No Contributions Yet</h4>
+    <p class="text-sm mb-6">Your contribution chart will appear here once you start making contributions to registered projects.</p>
+    
+    <!-- Empty contribution grid -->
+    <div class="bg-gray-50 p-4 rounded-lg">
+      <div class="grid grid-cols-7 gap-1 mb-2">
+        {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
+          <div class="text-xs font-medium text-gray-400 text-center py-1">{day}</div>
+        ))}
+      </div>
+      
+      <div class="grid grid-cols-7 gap-1">
+        {emptyContributions.slice(0, 28).map(({ date, count }) => (
+          <div 
+            class="w-6 h-6 rounded-sm bg-gray-100 border border-gray-200"
+            title={`${date}: ${count} contributions`}
+          >
+          </div>
+        ))}
+      </div>
+      
+      <div class="flex items-center justify-between mt-4 text-xs text-gray-400">
+        <span>Less</span>
+        <div class="flex items-center space-x-1">
+          <div class="w-2 h-2 bg-gray-100 border border-gray-200 rounded-sm"></div>
+          <div class="w-2 h-2 bg-orange-200 border border-orange-300 rounded-sm"></div>
+          <div class="w-2 h-2 bg-orange-300 border border-orange-400 rounded-sm"></div>
+          <div class="w-2 h-2 bg-orange-400 border border-orange-500 rounded-sm"></div>
+          <div class="w-2 h-2 bg-orange-500 border border-orange-600 rounded-sm"></div>
+        </div>
+        <span>More</span>
+      </div>
+    </div>
+  </div>
+</div>

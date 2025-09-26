@@ -1,16 +1,97 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import StatCard from "../components/StatCard.astro";
+import ContributionChart from "../components/ContributionChart.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Hacktoberfest 2025 Dashboard">
+  <Fragment slot="navbar">
+    <Navbar />
+  </Fragment>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-blue-600 to-blue-900 text-white py-20 text-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-5xl font-bold mb-6">Hacktoberfest 2025</h1>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">
+        Join the global celebration of open source! Contribute to projects, learn new skills, and earn exclusive rewards.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+        <a href="/register" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-colors">
+          Register Project
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Hacktoberfest 2025 Stats</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StatCard 
+          title="Total Projects" 
+          value="0" 
+          subtitle="Active repositories" 
+        />
+        <StatCard 
+          title="Contributors" 
+          value="0" 
+          subtitle="Active participants" 
+        />
+        <StatCard 
+          title="Pull Requests" 
+          value="0" 
+          subtitle="Contributions made" 
+        />
+        <StatCard 
+          title="Issues Resolved" 
+          value="0" 
+          subtitle="Problems solved" 
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Activity Section -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Contribution Chart -->
+        <div>
+          <ContributionChart />
+        </div>
+        
+        <!-- Recent Activity -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
+          <div class="text-center text-gray-500 py-8">
+            <h4 class="text-lg font-semibold mb-2">No Activity Yet</h4>
+            <p class="text-sm">Activity will appear here once projects are registered and contributions start flowing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="bg-orange-600 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to Start Contributing?</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">
+        Whether you're a beginner or an experienced developer, there's a place for you in Hacktoberfest.
+      </p>
+      <a href="/projects" class="bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-block">
+        Browse Projects
+      </a>
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</Layout>
