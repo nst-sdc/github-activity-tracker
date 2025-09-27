@@ -15,8 +15,8 @@ const leaderboard = [];
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">Leaderboard</h1>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4 font-mono">Leaderboard</h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto font-mono">
           See who's leading the pack in Hacktoberfest 2025 contributions
         </p>
       </div>
@@ -24,19 +24,19 @@ const leaderboard = [];
       <!-- Empty Podium -->
       <div class="mb-16 text-center">
         <div class="bg-gray-50 rounded-lg p-16">
-          <h3 class="text-2xl font-bold text-gray-900 mb-4">No Rankings Yet</h3>
-          <p class="text-gray-600 mb-8 max-w-md mx-auto">
+          <h3 class="text-2xl font-bold text-gray-900 mb-4 font-mono">No Rankings Yet</h3>
+          <p class="text-gray-600 mb-8 max-w-md mx-auto font-mono">
             The leaderboard will populate once contributors start making contributions to registered projects.
           </p>
           <div class="flex justify-center space-x-8">
             <!-- Placeholder podium -->
-            <div class="bg-gray-200 rounded-lg p-6 w-24 h-32 flex flex-col items-center justify-end">
+            <div class="bg-gray-200 rounded-lg p-6 w-24 h-32 flex flex-col items-center justify-end font-mono">
               <div class="text-xs text-gray-500">2nd</div>
             </div>
-            <div class="bg-yellow-200 rounded-lg p-6 w-24 h-40 flex flex-col items-center justify-end">
+            <div class="bg-yellow-200 rounded-lg p-6 w-24 h-40 flex flex-col items-center justify-end font-mono">
               <div class="text-xs text-gray-600">1st</div>
             </div>
-            <div class="bg-orange-200 rounded-lg p-6 w-24 h-28 flex flex-col items-center justify-end">
+            <div class="bg-orange-200 rounded-lg p-6 w-24 h-28 flex flex-col items-center justify-end font-mono">
               <div class="text-xs text-gray-500">3rd</div>
             </div>
           </div>
@@ -46,16 +46,16 @@ const leaderboard = [];
       <!-- Empty Leaderboard Table -->
       <div class="bg-white rounded-lg shadow-lg overflow-hidden">
         <div class="px-6 py-4 bg-green-600 text-white">
-          <h2 class="text-xl font-semibold">Full Rankings</h2>
+          <h2 class="text-xl font-semibold font-mono">Full Rankings</h2>
         </div>
         
         <div class="text-center py-16">
-          <h3 class="text-xl font-bold text-gray-900 mb-4">Leaderboard Coming Soon</h3>
-          <p class="text-gray-600 mb-8 max-w-md mx-auto">
+          <h3 class="text-xl font-bold text-gray-900 mb-4 font-mono">Leaderboard Coming Soon</h3>
+          <p class="text-gray-600 mb-8 max-w-md mx-auto font-mono">
             Once contributors start participating, you'll see detailed rankings with points, contributions, and achievements here.
           </p>
           <a href="/projects" 
-             class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition-colors font-semibold">
+             class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition-colors font-semibold font-mono">
             Explore Projects
           </a>
         </div>
@@ -63,19 +63,19 @@ const leaderboard = [];
 
       <!-- Points System -->
       <div class="mt-12 bg-gray-50 rounded-lg p-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">How Points Are Calculated</h2>
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center font-mono">How Points Are Calculated</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="text-center">
-            <h3 class="font-semibold text-lg">Pull Requests</h3>
-            <p class="text-gray-600">10 points each</p>
+            <h3 class="font-semibold text-lg font-mono">Pull Requests</h3>
+            <p class="text-gray-600 font-mono">10 points each</p>
           </div>
           <div class="text-center">
-            <h3 class="font-semibold text-lg">Issues Resolved</h3>
-            <p class="text-gray-600">5 points each</p>
+            <h3 class="font-semibold text-lg font-mono">Issues Resolved</h3>
+            <p class="text-gray-600 font-mono">5 points each</p>
           </div>
           <div class="text-center">
-            <h3 class="font-semibold text-lg">Quality Bonus</h3>
-            <p class="text-gray-600">Extra points for exceptional contributions</p>
+            <h3 class="font-semibold text-lg  font-mono">Quality Bonus</h3>
+            <p class="text-gray-600 font-mono">Extra points for exceptional contributions</p>
           </div>
         </div>
       </div>
