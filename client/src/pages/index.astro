@@ -10,10 +10,9 @@ import ContributionChart from "../components/ContributionChart.astro";
   <Fragment slot="navbar">
     <Navbar />
   </Fragment>
-  <main class="min-h-screen bg-black font-mono">
+  <main class="min-h-screen bg-gradient-to-br from-black via-gray-900 to-green-900 font-mono">
 
-    <section class="relative bg-gradient-to-br from-black via-gray-900 to-green-900 text-white py-24 overflow-hidden">
-
+    <section class="relative text-white py-24 overflow-hidden">
       
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div class="inline-block mb-6">
@@ -31,8 +30,7 @@ import ContributionChart from "../components/ContributionChart.astro";
         </h2>
         
         <p class="text-xl mb-10 max-w-3xl mx-auto leading-relaxed opacity-90 text-gray-300">
-          Join millions of developers worldwide in the month-long celebration of open source software. 
-          Contribute to projects, learn new skills, and earn exclusive digital rewards.
+          Join developers in NSTSDC and contributing to open source projects. Register your project, track contributions, and climb the leaderboard!
         </p>
         
         <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -44,14 +42,12 @@ import ContributionChart from "../components/ContributionChart.astro";
               </svg>
             </span>
           </a>
-          
-          
         </div>
       </div>
     </section>
 
     <!-- Progress Indicator -->
-    <section class="bg-gray-900 py-8 border-b border-gray-800">
+    <section class="py-8 border-b border-gray-800/50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-center space-x-8">
           <div class="text-center">
@@ -64,13 +60,12 @@ import ContributionChart from "../components/ContributionChart.astro";
             <div class="text-sm text-gray-400 font-medium">PRs Needed</div>
           </div>
           <div class="w-px h-12 bg-gray-700"></div>
-          
         </div>
       </div>
     </section>
 
     <!-- Enhanced Stats Section -->
-    <section class="py-20 bg-gradient-to-b from-gray-900 to-black">
+    <section class="py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="text-4xl font-black text-white mb-4">Live Statistics</h2>
@@ -105,11 +100,11 @@ import ContributionChart from "../components/ContributionChart.astro";
     </section>
 
     <!-- Enhanced Activity Section -->
-    <section class="py-20 bg-black">
+    <section class="py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <!-- Contribution Chart -->
-          <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-8 shadow-lg">
+          <div class="bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 rounded-2xl p-8 shadow-lg backdrop-blur-sm">
             <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
               <div class="w-8 h-8 bg-gradient-to-r from-green-500 to-lime-400 rounded-lg flex items-center justify-center">
                 <svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20">
@@ -122,7 +117,7 @@ import ContributionChart from "../components/ContributionChart.astro";
           </div>
           
           <!-- Recent Activity -->
-          <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-8 shadow-lg">
+          <div class="bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 rounded-2xl p-8 shadow-lg backdrop-blur-sm">
             <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
               <div class="w-8 h-8 bg-gradient-to-r from-emerald-500 to-green-400 rounded-lg flex items-center justify-center">
                 <svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20">
@@ -133,7 +128,7 @@ import ContributionChart from "../components/ContributionChart.astro";
             </h3>
             
             <div class="text-center py-12">
-              <div class="w-24 h-24 bg-gradient-to-r from-gray-800 to-gray-700 border border-gray-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div class="w-24 h-24 bg-gradient-to-r from-gray-800/50 to-gray-700/50 border border-gray-600 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
                 <svg class="w-12 h-12 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
@@ -150,7 +145,7 @@ import ContributionChart from "../components/ContributionChart.astro";
     </section>
 
     <!-- Enhanced Call to Action -->
-    <section class="relative bg-gradient-to-r from-black via-gray-900 to-green-900 text-white py-24 overflow-hidden">
+    <section class="relative text-white py-24 overflow-hidden">
       <!-- Background elements -->
       <div class="absolute inset-0 opacity-20">
         <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%2310b981%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
@@ -171,8 +166,6 @@ import ContributionChart from "../components/ContributionChart.astro";
           </p>
           
           <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            
-            
             <a href="/leaderboard" class="group border-2 border-green-400 text-green-400 px-12 py-5 rounded-xl font-bold text-xl hover:bg-green-400 hover:text-black transition-all duration-300 backdrop-blur-sm">
               <span class="flex items-center gap-3">
               View Leaderboard
