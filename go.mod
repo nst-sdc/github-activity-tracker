@@ -1,10 +1,29 @@
+<<<<<<< HEAD
+module github.com/nst-sdc/gofr
+=======
 module github-activity-tracker
+>>>>>>> 7bfeab7ecdaa13c74001ec5c08bd6616698e3700
 
-go 1.25.1
+go 1.24.0
+
+toolchain go1.24.7
 
 require gofr.dev v1.45.0
 
 require (
+<<<<<<< HEAD
+	github.com/ProtonMail/go-crypto v0.0.0-20230217124315-7d5c6f04bbb8 // indirect
+	github.com/cloudflare/circl v1.3.3 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/google/go-github/v53 v53.2.0 // indirect
+	github.com/google/go-querystring v1.1.0 // indirect
+	golang.org/x/crypto v0.7.0 // indirect
+	golang.org/x/net v0.10.0 // indirect
+	golang.org/x/oauth2 v0.31.0 // indirect
+	golang.org/x/sys v0.8.0 // indirect
+	google.golang.org/appengine v1.6.7 // indirect
+	google.golang.org/protobuf v1.28.0 // indirect
+=======
 	cloud.google.com/go v0.120.0 // indirect
 	cloud.google.com/go/auth v0.16.5 // indirect
 	cloud.google.com/go/auth/oauth2adapt v0.2.8 // indirect
@@ -107,4 +126,5 @@ require (
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.11.0 // indirect
 	modernc.org/sqlite v1.38.2 // indirect
+>>>>>>> 7bfeab7ecdaa13c74001ec5c08bd6616698e3700
 )

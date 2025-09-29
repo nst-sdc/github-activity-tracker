@@ -1,0 +1,121 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Register - Hacktoberfest 2025">
+    <Fragment slot="navbar">
+        <Navbar />
+    </Fragment>
+
+    <section class="py-16">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4 font-mono">Register for Hacktoberfest 2025</h1>
+                <p class="text-xl text-gray-600 font-mono">
+                    Join the celebration of open source software
+                </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2 font-mono">
+                            Full Name *
+                        </label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name"
+                            class="w-full p-3 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                            placeholder="Enter your full name"
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2 font-mono">
+                            ADYPU Email *
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email"
+                            class="w-full p-3 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                            placeholder="your.name@adypu.edu.in"
+                            pattern=".*@adypu\.edu\.in$"
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <label for="github-id" class="block text-sm font-medium text-gray-700 mb-2 font-mono">
+                            GitHub Username *
+                        </label>
+                        <input 
+                            type="text" 
+                            id="github-id" 
+                            name="github-id"
+                            class="w-full p-3 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                            placeholder="your-github-username"
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <label for="experience" class="block text-sm font-medium text-gray-700 mb-2 font-mono">
+                            Experience Level *
+                        </label>
+                        <select 
+                            id="experience" 
+                            name="experience"
+                            class="w-full p-3 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                            required
+                        >
+                            <option value="">Select your experience level</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="experienced">Experienced</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="flex items-start space-x-3">
+                            <input 
+                                type="checkbox" 
+                                id="hacktoberfest-registered"
+                                name="hacktoberfest-registered"
+                                class="mt-1 h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
+                                required
+                            />
+                            <span class="text-sm text-gray-700 font-mono">
+                                I confirm that I am registered for Hacktoberfest 2025. 
+                                <a 
+                                    href="https://hacktoberfest.com" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    class="text-orange-600 hover:text-orange-700 underline font-mono"
+                                >
+                                    Register here if you haven't already
+                                </a>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="pt-6">
+                        <button 
+                            type="submit" 
+                            class="w-full bg-orange-600 text-white py-3 px-6 rounded-md hover:bg-orange-700 transition-colors font-semibold font-mono"
+                        >
+                            Register
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <Fragment slot="footer">
+        <Footer />
+    </Fragment>
+</Layout>

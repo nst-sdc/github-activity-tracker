@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Admin Dashboard - Hacktoberfest 2025">
+  <Fragment slot="navbar">
+    <Navbar />
+  </Fragment>
+
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4 font-mono">Admin Dashboard</h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto font-mono">
+          Manage Hacktoberfest 2025 projects and monitor contributions
+        </p>
+      </div>
+
+     
+
+      <div class="bg-white rounded-lg shadow-lg p-8 mt-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 font-mono">Contribution Overview</h2>
+        <p class="text-gray-600 mb-4">
+
+        </p>
+        <div class="bg-gray-100 rounded-lg p-6">
+          <p class="text-gray-500 font-mono">Contribution charts and stats will be displayed here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
