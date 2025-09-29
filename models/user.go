@@ -13,4 +13,3 @@ type User struct {
 }
 
 
-// this is an example model
