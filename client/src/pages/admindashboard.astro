@@ -4,15 +4,24 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
 
-const username = "octocat"; 
-const res = await fetch(`http://localhost:4000/api/github/issues?user=${username}`);
-type Contribution = {
+const res = await fetch("http://localhost:8000/admin-dashboard");
+type PR = {
+  id: number;
   title: string;
-  repo: string;
+  url: string;
   state: string;
   merged: boolean;
+  created: string;
+  org?: string;
+  project?: string;
+  month?: string;
 };
-const contributions: Contribution[] = await res.json();
+type UserPRs = {
+  name: string;
+  github_user: string;
+  prs: PR[];
+};
+const dashboard: UserPRs[] = await res.json();
 ---
 
 <Layout title="Admin Dashboard - Hacktoberfest 2025">
@@ -30,33 +39,45 @@ const contributions: Contribution[] = await res.json();
       </div>
 
       <div class="bg-white rounded-lg shadow-lg p-8 mt-12">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6 font-mono">Contribution Overview</h2>
-
-         
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 font-mono">All User PRs (Sept & Oct)</h2>
         <div class="overflow-x-auto">
           <table class="min-w-full table-auto border border-gray-200 rounded-lg">
             <thead class="bg-gray-100">
               <tr>
-                <th class="px-4 py-2 text-left text-gray-700 font-mono">PR/Issue</th>
-                <th class="px-4 py-2 text-left text-gray-700 font-mono">Repository</th>
+                <th class="px-4 py-2 text-left text-gray-700 font-mono">User</th>
+                <th class="px-4 py-2 text-left text-gray-700 font-mono">PR Title</th>
                 <th class="px-4 py-2 text-left text-gray-700 font-mono">State</th>
                 <th class="px-4 py-2 text-left text-gray-700 font-mono">Merged</th>
+                <th class="px-4 py-2 text-left text-gray-700 font-mono">Month</th>
+                <th class="px-4 py-2 text-left text-gray-700 font-mono">Project</th>
+                <th class="px-4 py-2 text-left text-gray-700 font-mono">Org</th>
+                <th class="px-4 py-2 text-left text-gray-700 font-mono">Created</th>
+                <th class="px-4 py-2 text-left text-gray-700 font-mono">Link</th>
               </tr>
             </thead>
             <tbody>
-              {contributions.map((item: Contribution) => (
-                <tr class="border-t">
-                  <td class="px-4 py-2 font-mono">{item.title}</td>
-                  <td class="px-4 py-2 font-mono">{item.repo}</td>
-                  <td class="px-4 py-2 font-mono">{item.state}</td>
-                  <td class="px-4 py-2 font-mono">
-                    {item.merged ? (
-                      <span class="text-green-600 font-bold">Yes</span>
-                    ) : (
-                      <span class="text-red-600 font-bold">No</span>
-                    )}
-                  </td>
-                </tr>
+              {dashboard.map((user: UserPRs) => (
+                user.prs.map((pr: PR) => (
+                  <tr class="border-t">
+                    <td class="px-4 py-2 font-mono">{user.name} ({user.github_user})</td>
+                    <td class="px-4 py-2 font-mono">{pr.title}</td>
+                    <td class="px-4 py-2 font-mono">{pr.state}</td>
+                    <td class="px-4 py-2 font-mono">
+                      {pr.merged ? (
+                        <span class="text-green-600 font-bold">Yes</span>
+                      ) : (
+                        <span class="text-red-600 font-bold">No</span>
+                      )}
+                    </td>
+                    <td class="px-4 py-2 font-mono">{pr.month}</td>
+                    <td class="px-4 py-2 font-mono">{pr.project}</td>
+                    <td class="px-4 py-2 font-mono">{pr.org}</td>
+                    <td class="px-4 py-2 font-mono">{pr.created}</td>
+                    <td class="px-4 py-2 font-mono">
+                      <a href={pr.url} target="_blank" class="text-blue-600 underline">View PR</a>
+                    </td>
+                  </tr>
+                ))
               ))}
             </tbody>
           </table>
