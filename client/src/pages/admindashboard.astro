@@ -5,7 +5,7 @@ import Footer from "../components/Footer.astro";
 
 
 const username = "octocat"; 
-const res = await fetch(`http://localhost:4000/api/github/issues?user=${username}`);
+const res = await fetch(`http://localhost:8000/api/github/issues?user=${username}`);
 type Contribution = {
   title: string;
   repo: string;
