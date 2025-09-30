@@ -3,31 +3,42 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
+// API Configuration
+const API_BASE_URL = "http://localhost:8000";
 
-<<<<<<< HEAD
-const username = "octocat"; 
-const res = await fetch(`http://localhost:8000/api/github/issues?user=${username}`);
-type Contribution = {
-=======
-const res = await fetch("http://localhost:8000/admin-dashboard");
+// Fetch dashboard data from backend
+let dashboard: UserPRs[] = [];
+let error: string | null = null;
+
+try {
+  const res = await fetch(`${API_BASE_URL}/admin-dashboard`);
+  if (res.ok) {
+    dashboard = await res.json();
+  } else {
+    error = `API Error: ${res.status} ${res.statusText}`;
+  }
+} catch (err) {
+  error = `Connection Error: Unable to connect to backend server at ${API_BASE_URL}`;
+  console.error("API fetch error:", err);
+}
+
 type PR = {
   id: number;
->>>>>>> 8f6fe845f7291ae1a6623075bb1f305e1759377d
   title: string;
   url: string;
-  state: string;
+  status: string;
   merged: boolean;
   created: string;
   org?: string;
   project?: string;
   month?: string;
 };
+
 type UserPRs = {
   name: string;
   github_user: string;
   prs: PR[];
 };
-const dashboard: UserPRs[] = await res.json();
 ---
 
 <Layout title="Admin Dashboard - Hacktoberfest 2025">
@@ -46,8 +57,33 @@ const dashboard: UserPRs[] = await res.json();
 
       <div class="bg-white rounded-lg shadow-lg p-8 mt-12">
         <h2 class="text-2xl font-bold text-gray-900 mb-6 font-mono">All User PRs (Sept & Oct)</h2>
-        <div class="overflow-x-auto">
-          <table class="min-w-full table-auto border border-gray-200 rounded-lg">
+        
+        {error && (
+          <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+            <h3 class="text-red-800 font-semibold font-mono mb-2">Backend Connection Error</h3>
+            <p class="text-red-700 font-mono text-sm">{error}</p>
+            <p class="text-red-600 font-mono text-xs mt-2">
+              Make sure the backend server is running on port 8000 and the database is set up.
+            </p>
+          </div>
+        )}
+        
+        {!error && dashboard.length === 0 && (
+          <div class="text-center py-12">
+            <h3 class="text-xl font-bold text-gray-900 mb-4 font-mono">No Data Available</h3>
+            <p class="text-gray-600 mb-6 font-mono">
+              No users or pull requests found. Register some users first.
+            </p>
+            <a href="/register" 
+               class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold font-mono">
+              Register Users
+            </a>
+          </div>
+        )}
+        
+        {!error && dashboard.length > 0 && (
+          <div class="overflow-x-auto">
+            <table class="min-w-full table-auto border border-gray-200 rounded-lg">
             <thead class="bg-gray-100">
               <tr>
                 <th class="px-4 py-2 text-left text-gray-700 font-mono">User</th>
@@ -67,7 +103,7 @@ const dashboard: UserPRs[] = await res.json();
                   <tr class="border-t">
                     <td class="px-4 py-2 font-mono">{user.name} ({user.github_user})</td>
                     <td class="px-4 py-2 font-mono">{pr.title}</td>
-                    <td class="px-4 py-2 font-mono">{pr.state}</td>
+                    <td class="px-4 py-2 font-mono">{pr.status}</td>
                     <td class="px-4 py-2 font-mono">
                       {pr.merged ? (
                         <span class="text-green-600 font-bold">Yes</span>
@@ -85,9 +121,10 @@ const dashboard: UserPRs[] = await res.json();
                   </tr>
                 ))
               ))}
-            </tbody>
-          </table>
-        </div>
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   </section>

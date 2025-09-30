@@ -1,54 +1,55 @@
 package store
 
 import (
-	"github.com/nst-sdc/github-activity-tracker/model"
+	"github-activity-tracker/models"
 
-	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
 type UserStore interface {
-	Save(u model.GitId) (model.GitId, error)
-	GetByID(id string) (model.GitId, error)
-	GetByGitHubID(githubID string) (model.GitId, error)
-	GetAll() ([]model.GitId, error)
+	Save(u models.User) (models.User, error)
+	GetByID(id string) (models.User, error)
+	GetByGitHubID(githubID string) (models.User, error)
+	GetAll() ([]models.User, error)
 	Delete(id string) error
 }
 
 type InMemoryStore struct {
-	data map[string]model.GitId
+	data map[string]models.User
 }
 
 func NewInMemoryStore() *InMemoryStore {
 	return &InMemoryStore{
-		data: make(map[string]model.GitId),
+		data: make(map[string]models.User),
 	}
 }
 
-func (s *InMemoryStore) Save(u model.GitId) (model.GitId, error) {
-	u.ID = uuid.New().String()
-	s.data[u.ID] = u
+func (s *InMemoryStore) Save(u models.User) (models.User, error) {
+	if u.ID == 0 {
+		u.ID = uint(len(s.data) + 1) // Simple ID generation
+	}
+	s.data[string(rune(u.ID))] = u
 	return u, nil
 }
 
-func (s *InMemoryStore) GetByID(id string) (model.GitId, error) {
+func (s *InMemoryStore) GetByID(id string) (models.User, error) {
 	if user, exists := s.data[id]; exists {
 		return user, nil
 	}
-	return model.GitId{}, nil
+	return models.User{}, nil
 }
 
-func (s *InMemoryStore) GetByGitHubID(githubID string) (model.GitId, error) {
+func (s *InMemoryStore) GetByGitHubID(githubID string) (models.User, error) {
 	for _, user := range s.data {
-		if user.GitHubID == githubID {
+		if user.GithubUser == githubID {
 			return user, nil
 		}
 	}
-	return model.GitId{}, nil
+	return models.User{}, nil
 }
 
-func (s *InMemoryStore) GetAll() ([]model.GitId, error) {
-	users := make([]model.GitId, 0, len(s.data))
+func (s *InMemoryStore) GetAll() ([]models.User, error) {
+	users := make([]models.User, 0, len(s.data))
 	for _, user := range s.data {
 		users = append(users, user)
 	}
@@ -69,33 +70,29 @@ func NewPostgreSQLStore(db *gorm.DB) *PostgreSQLStore {
 	return &PostgreSQLStore{db: db}
 }
 
-func (s *PostgreSQLStore) Save(u model.GitId) (model.GitId, error) {
-	if u.ID == "" {
-		u.ID = uuid.New().String()
-	}
-
+func (s *PostgreSQLStore) Save(u models.User) (models.User, error) {
 	err := s.db.Create(&u).Error
 	return u, err
 }
 
-func (s *PostgreSQLStore) GetByID(id string) (model.GitId, error) {
-	var user model.GitId
+func (s *PostgreSQLStore) GetByID(id string) (models.User, error) {
+	var user models.User
 	err := s.db.Where("id = ?", id).First(&user).Error
 	return user, err
 }
 
-func (s *PostgreSQLStore) GetByGitHubID(githubID string) (model.GitId, error) {
-	var user model.GitId
-	err := s.db.Where("git_hub_id = ?", githubID).First(&user).Error
+func (s *PostgreSQLStore) GetByGitHubID(githubID string) (models.User, error) {
+	var user models.User
+	err := s.db.Where("github_user = ?", githubID).First(&user).Error
 	return user, err
 }
 
-func (s *PostgreSQLStore) GetAll() ([]model.GitId, error) {
-	var users []model.GitId
+func (s *PostgreSQLStore) GetAll() ([]models.User, error) {
+	var users []models.User
 	err := s.db.Find(&users).Error
 	return users, err
 }
 
 func (s *PostgreSQLStore) Delete(id string) error {
-	return s.db.Delete(&model.GitId{}, "id = ?", id).Error
+	return s.db.Delete(&models.User{}, "id = ?", id).Error
 }

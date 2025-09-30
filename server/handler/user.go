@@ -3,8 +3,8 @@ package handler
 import (
 	"errors"
 
-	"github.com/nst-sdc/github-activity-tracker/model"
-	"github.com/nst-sdc/github-activity-tracker/service"
+	"github-activity-tracker/models"
+	"github-activity-tracker/service"
 
 	"gofr.dev/pkg/gofr"
 )
@@ -18,7 +18,7 @@ func NewUserHandler(userService service.UserService) UserHandler {
 }
 
 func (h UserHandler) AddGitId(ctx *gofr.Context) (interface{}, error) {
-	var u model.GitId
+	var u models.User
 
 	err := ctx.Bind(&u)
 
@@ -27,7 +27,7 @@ func (h UserHandler) AddGitId(ctx *gofr.Context) (interface{}, error) {
 	}
 
 	// Validate that GitHub ID is provided
-	if u.GitHubID == "" {
+	if u.GithubUser == "" {
 		return nil, errors.New("GitHub ID is required")
 	}
 

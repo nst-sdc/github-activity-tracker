@@ -6,7 +6,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/nst-sdc/github-activity-tracker/model"
+	"github-activity-tracker/models"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -75,7 +76,11 @@ func InitDatabase() error {
 // AutoMigrate runs auto-migration for all models
 func AutoMigrate() error {
 	err := DB.AutoMigrate(
-		&model.GitId{},
+		&models.User{},
+		&models.PR{},
+		&models.Month{},
+		&models.Org{},
+		&models.Project{},
 	)
 	if err != nil {
 		return fmt.Errorf("failed to auto-migrate models: %w", err)
