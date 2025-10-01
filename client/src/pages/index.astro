@@ -47,22 +47,69 @@ import ContributionChart from "../components/ContributionChart.astro";
     </section>
 
     <!-- Progress Indicator -->
-    <section class="py-8 border-b border-gray-800/50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-center space-x-8">
-          <div class="text-center">
-            <div class="text-3xl font-black text-green-400">31</div>
-            <div class="text-sm text-gray-400 font-medium">Days Left</div>
-          </div>
-          <div class="w-px h-12 bg-gray-700"></div>
-          <div class="text-center">
-            <div class="text-3xl font-black text-lime-400">6</div>
-            <div class="text-sm text-gray-400 font-medium">PRs Needed</div>
-          </div>
-          <div class="w-px h-12 bg-gray-700"></div>
-        </div>
+     <!-- Progress Indicator -->
+   <section class="py-8 border-b border-gray-800/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-center space-x-8">
+      
+      <!-- Countdown -->
+      <div class="text-center">
+        <div id="countdown" class="text-3xl font-black text-green-400">00:00:00:00</div>
+        <div class="text-sm text-gray-400 font-medium">Days : Hours : Minutes : Seconds</div>
       </div>
-    </section>
+
+      <div class="w-px h-12 bg-gray-700"></div>
+
+      <!-- PRs Needed -->
+      <div class="text-center">
+        <div class="text-3xl font-black text-lime-400">6</div>
+        <div class="text-sm text-gray-400 font-medium">PRs Needed</div>
+      </div>
+
+      <div class="w-px h-12 bg-gray-700"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Set target date (example: 31 days from now)
+  const targetDate = new Date();
+  targetDate.setDate(targetDate.getDate() + 31);
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = targetDate.getTime() - now;
+
+    if (diff <= 0) {
+      const countdownEl = document.getElementById("countdown");
+      if (countdownEl) {
+        countdownEl.innerText = "00:00:00:00";
+      }
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    const countdownEl = document.getElementById("countdown");
+    if (countdownEl) {
+      countdownEl.innerText =
+        `${String(days).padStart(2, "0")}:${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+
+    const countdownEl2 = document.getElementById("countdown");
+    if (countdownEl2) {
+      countdownEl2.innerText =
+        `${String(days).padStart(2, "0")}:${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+  }
+
+  // Run every second
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
 
     <!-- Enhanced Stats Section -->
     <section class="py-20">
