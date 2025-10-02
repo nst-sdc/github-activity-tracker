@@ -1,0 +1,2 @@
+build:
+  goVersion: 1.25.1
