@@ -1,3 +1,7 @@
+# This repository is currently archived in favor of [https://github.com/nst-sdc/git-go-pr](https://github.com/nst-sdc/git-go-pr)
+
+---
+
 # GitHub Activity Tracker
 
 A tool to track and visualize GitHub activity (commits, issues, PRs, etc.) across repositories or users.
